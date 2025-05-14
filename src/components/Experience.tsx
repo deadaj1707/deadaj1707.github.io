@@ -60,7 +60,7 @@ const experiences: ExperienceItem[] = [
     period: "Dec 2023 - Jan 2025",
     description: [
       "Built a profession prediction model with 85% precision and 0.77 F1 score using BERT and Bi-LSTM for text classification",
-      "Designed a personality-based framework ("Beeflow", "Antflow", and "Leechflow") to align careers with personality traits",
+      "Designed a personality-based framework (\"Beeflow\", \"Antflow\", and \"Leechflow\") to align careers with personality traits",
       "Transcribed 80,000 words from media & blogs with Whisper AI, applying clustering and SHAP for model interpretability"
     ],
     link: "https://www.mit.edu/"
