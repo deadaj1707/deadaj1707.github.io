@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { ArrowRight, FileText, GitHub, Linkedin } from 'lucide-react';
+import { ArrowRight, FileText, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Hero: React.FC = () => {
@@ -45,7 +44,7 @@ const Hero: React.FC = () => {
               
               <a href="https://github.com/deadaj1707" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="rounded-full px-6 border-portfolio-muted">
-                  <GitHub className="mr-2 h-4 w-4" /> GitHub
+                  <Github className="mr-2 h-4 w-4" /> GitHub
                 </Button>
               </a>
               
