@@ -92,7 +92,7 @@ const NavBar: React.FC = () => {
               className="text-portfolio-text hover:text-portfolio-primary transition-colors"
               aria-label="GitHub"
             >
-              <GitHub size={20} />
+              <Github size={20} />
             </a>
             <a 
               href="https://www.linkedin.com/in/aditya-jha-209745231/" 
@@ -153,7 +153,7 @@ const NavBar: React.FC = () => {
                   className="text-portfolio-text hover:text-portfolio-primary transition-colors"
                   aria-label="GitHub"
                 >
-                  <GitHub size={20} />
+                  <Github size={20} />
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/aditya-jha-209745231/" 
