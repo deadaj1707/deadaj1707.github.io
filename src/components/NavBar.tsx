@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, Phone, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface NavLink {
   id: string;
@@ -57,29 +58,37 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-4"
-    )}>
+    <motion.header 
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-4"
+      )}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center">
           <a href="#home" className="text-xl font-display font-bold text-portfolio-primary">
-            Aditya Jha
+            <span className="text-portfolio-accent">A</span>ditya <span className="text-portfolio-accent">J</span>ha
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
-            {LINKS.map(link => (
-              <button 
+          <div className="hidden md:flex items-center space-x-2">
+            {LINKS.map((link, index) => (
+              <motion.button 
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
                 className={cn(
-                  "nav-link",
-                  activeSection === link.id && "active"
+                  "nav-link px-4 py-2 rounded-md transition-all",
+                  activeSection === link.id ? "bg-portfolio-card text-portfolio-primary font-medium" : "text-portfolio-text hover:bg-portfolio-card/50"
                 )}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
               >
                 {link.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -89,7 +98,7 @@ const NavBar: React.FC = () => {
               href="https://github.com/deadaj1707" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+              className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
               aria-label="GitHub"
             >
               <Github size={20} />
@@ -98,21 +107,21 @@ const NavBar: React.FC = () => {
               href="https://www.linkedin.com/in/aditya-jha-209745231/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+              className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
               aria-label="LinkedIn"
             >
               <Linkedin size={20} />
             </a>
             <a 
               href="mailto:jhaaditya1707@gmail.com" 
-              className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+              className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
               aria-label="Email"
             >
               <Mail size={20} />
             </a>
             <a 
               href="tel:+919477766255" 
-              className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+              className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
               aria-label="Phone"
             >
               <Phone size={20} />
@@ -121,7 +130,7 @@ const NavBar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-portfolio-text"
+            className="md:hidden text-portfolio-text p-2 hover:bg-portfolio-card rounded-full transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -131,15 +140,20 @@ const NavBar: React.FC = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-2 py-4 bg-white rounded-lg shadow-lg animate-fade-in">
+          <motion.div 
+            className="md:hidden mt-2 py-4 bg-white rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="flex flex-col space-y-2">
               {LINKS.map(link => (
                 <button 
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
                   className={cn(
-                    "py-2 px-4 text-left",
-                    activeSection === link.id ? "bg-portfolio-card text-portfolio-primary font-medium" : "text-portfolio-text"
+                    "py-2 px-4 text-left rounded-md mx-2 transition-colors",
+                    activeSection === link.id ? "bg-portfolio-card text-portfolio-primary font-medium" : "text-portfolio-text hover:bg-portfolio-card/50"
                   )}
                 >
                   {link.label}
@@ -150,7 +164,7 @@ const NavBar: React.FC = () => {
                   href="https://github.com/deadaj1707" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
                   aria-label="GitHub"
                 >
                   <Github size={20} />
@@ -159,31 +173,31 @@ const NavBar: React.FC = () => {
                   href="https://www.linkedin.com/in/aditya-jha-209745231/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
                 </a>
                 <a 
                   href="mailto:jhaaditya1707@gmail.com" 
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
                   aria-label="Email"
                 >
                   <Mail size={20} />
                 </a>
                 <a 
                   href="tel:+919477766255" 
-                  className="text-portfolio-text hover:text-portfolio-primary transition-colors"
+                  className="text-portfolio-text hover:text-portfolio-primary transition-colors p-2 hover:bg-portfolio-card rounded-full"
                   aria-label="Phone"
                 >
                   <Phone size={20} />
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
-    </header>
+    </motion.header>
   );
 };
 
